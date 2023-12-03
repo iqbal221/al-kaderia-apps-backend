@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Prisma, Product } from '@prisma/client';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
@@ -15,7 +16,7 @@ const InsertIntoDB = async (ProductData: Product): Promise<Product> => {
 
 const GetAllFromDB = async (
   filters: IProductFilters,
-  options: IPaginationOptions
+  options: IPaginationOptions,
 ): Promise<IGenericResponse<Product[]>> => {
   const { limit, page, skip, sortBy, sortOrder } =
     paginationHelpers.calculatePagination(options);
@@ -77,7 +78,7 @@ const GetAllFromDB = async (
 
 const UpdateIntoDB = async (
   id: string,
-  payload: Partial<Product>
+  payload: Partial<Product>,
 ): Promise<Product> => {
   const result = await prisma.product.update({
     where: {
